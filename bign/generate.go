@@ -24,7 +24,7 @@ import (
     "strings"
     "text/template"
 
-    "github.com/deatil/gapr/bign"
+    "github.com/deatil/gapr/bign/ec"
 )
 
 var curves = []struct {
@@ -36,7 +36,7 @@ var curves = []struct {
     {
         P:         "P256",
         Element:   "fiat.P256Element",
-        Params:    bign.P256().Params(),
+        Params:    ec.P256().Params(),
         BuildTags: "purego || !(amd64 || arm64)",
     },
 }
