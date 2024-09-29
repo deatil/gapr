@@ -9,7 +9,7 @@ permissions:
     packages: write
 
 jobs:
-  pull_and_package:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,7 @@ jobs:
     - name: Go mod tidy
       run: go mod tidy
 
-    - name: Run Docker And Generate
+    - name: Generate
       run: |
         docker build -t fiat-crypto:v0.0.9 ./bign/fiat/
         go install github.com/mmcloughlin/addchain/cmd/addchain@v0.4.0
