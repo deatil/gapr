@@ -2,11 +2,9 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-FROM ubuntu:latest
+FROM coqorg/coq:8.20.0
 
-RUN apt install coq ocaml-findlib libcoq-ocaml-dev jq
-
-RUN git clone --recursive https://github.com/mit-plv/fiat-crypto.git && cd fiat-crypto && \
+RUN git clone https://github.com/mit-plv/fiat-crypto && cd fiat-crypto && \
     git submodule update --init --recursive
 RUN cd fiat-crypto && eval $(opam env) && make standalone-ocaml SKIP_BEDROCK2=1
 
