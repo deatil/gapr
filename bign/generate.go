@@ -23,8 +23,6 @@ import (
     "os/exec"
     "strings"
     "text/template"
-
-    "github.com/deatil/gapr/bign/ec"
 )
 
 var curves = []struct {
@@ -36,7 +34,15 @@ var curves = []struct {
     {
         P:         "P256",
         Element:   "fiat.P256Element",
-        Params:    ec.P256().Params(),
+        Params:    &elliptic.CurveParams{
+        	Name:    "BIGN256V1",
+        	BitSize: 256,
+        	P:       bigFromHex("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff43"),
+        	N:       bigFromHex("ffffffffffffffffffffffffffffffffd95c8ed60dfb4dfc7e5abf99263d6607"),
+        	B:       bigFromHex("77ce6c1515f3a8edd2c13aabe4d8fbbe4cf55069978b9253b22e7d6bd69c03f1"),
+        	Gx:      bigFromHex("0000000000000000000000000000000000000000000000000000000000000000"),
+        	Gy:      bigFromHex("6bf7fc3cfb16d69f5ce4c9a351d6835d78913966c408f6521e29cf1804516a93"),
+        },
         BuildTags: "purego || !(amd64 || arm64)",
     },
 }
@@ -600,3 +606,11 @@ func sqrtCandidate(z, x *Element) {
     {{- end }}
 }
 `
+
+func bigFromHex(s string) *big.Int {
+	b, ok := new(big.Int).SetString(s, 16)
+	if !ok {
+		panic("bign/elliptic: internal error: invalid encoding")
+	}
+	return b
+}
