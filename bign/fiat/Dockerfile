@@ -4,7 +4,7 @@
 
 # FROM coqorg/coq:dev-native-flambda
 
-FROM coqorg/coq:8.20.0-native-ocaml-4.13
+FROM coqorg/coq:8.20.0-native
 
 RUN git clone https://github.com/mit-plv/fiat-crypto && cd fiat-crypto && \
     git checkout v0.1.4 && \
