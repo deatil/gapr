@@ -2,13 +2,12 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-# FROM coqorg/coq:dev-native-flambda
+FROM ubuntu:latest
 
-FROM coqorg/coq:8.20.0-native
+RUN apt install coq ocaml-findlib libcoq-ocaml-dev jq
 
-RUN git clone https://github.com/mit-plv/fiat-crypto && cd fiat-crypto && \
-    git checkout v0.1.4 && \
+RUN git clone --recursive https://github.com/mit-plv/fiat-crypto.git && cd fiat-crypto && \
     git submodule update --init --recursive
-RUN cd fiat-crypto && eval $(opam env) && make -j4 standalone-ocaml SKIP_BEDROCK2=1
+RUN cd fiat-crypto && eval $(opam env) && make standalone-ocaml SKIP_BEDROCK2=1
 
 ENV PATH /home/coq/fiat-crypto/src/ExtractionOCaml:$PATH
