@@ -30,6 +30,20 @@ var curves = []struct {
         FiatType: "[4]uint64",
         BytesLen: 32,
     },
+    {
+        Element:  "P384Element",
+        Prime:    "2^384 - 317",
+        Prefix:   "p384",
+        FiatType: "[6]uint64",
+        BytesLen: 48,
+    },
+    {
+        Element:  "P512Element",
+        Prime:    "2^512 - 569",
+        Prefix:   "p512",
+        FiatType: "[9]uint64",
+        BytesLen: 66,
+    },
 }
 
 func main() {
