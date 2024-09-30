@@ -24,12 +24,15 @@ jobs:
     - name: Go mod tidy
       run: go mod tidy
 
-    - name: Generate
+    - name: Build fiat-crypto
       run: |
         docker build -t fiat-crypto:v0.0.9 ./bign/fiat/
         go install github.com/mmcloughlin/addchain/cmd/addchain@v0.4.0
-        go run ./bign/fiat/generate.go
-        go run ./bign/generate.go
+
+    - name: Generate
+      run: |
+        cd ./bign/fiat/ && go run generate.go
+        cd ./bign/ && go run generate.go
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
