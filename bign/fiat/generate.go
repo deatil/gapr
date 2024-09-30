@@ -41,8 +41,8 @@ var curves = []struct {
         Element:  "P512Element",
         Prime:    "2^512 - 569",
         Prefix:   "p512",
-        FiatType: "[9]uint64",
-        BytesLen: 66,
+        FiatType: "[8]uint64",
+        BytesLen: 64,
     },
 }
 
