@@ -25,14 +25,16 @@ var curves = []struct {
 }{
     {
         Element:  "P112r1Element",
-        Prime:    "(2^128 - 3) / 76439",
+        // Prime: "(2^128 - 3) / 76439",
+        Prime:    "2^128 / 76439 - 3",
         Prefix:   "p112r1",
         FiatType: "[4]uint64",
         BytesLen: 32,
     },
     {
         Element:  "P112r2Element",
-        Prime:    "(2^128 - 3) / 76439",
+        // Prime: "(2^128 - 3) / 76439",
+        Prime:    "2^128 / 76439 - 3",
         Prefix:   "p112r2",
         FiatType: "[4]uint64",
         BytesLen: 32,
