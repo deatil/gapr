@@ -26,18 +26,18 @@ jobs:
 
     - name: Build fiat-crypto
       run: |
-        docker build -t fiat-crypto:v0.0.9 ./secp/fiat/
+        docker build -t fiat-crypto:v0.0.9 ./e521/fiat/
         go install github.com/mmcloughlin/addchain/cmd/addchain@v0.4.0
 
     - name: Generate
       run: |
-        cd ./secp/fiat/ && go run generate.go
+        cd ./e521/fiat/ && go run generate.go
         cd ./../ && go run generate.go
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: secp-tar
-        path: ./secp/
+        name: e521-tar
+        path: ./e521/
         retention-days: 7  # 将保留天数设置为 7 天 最多可设置90天
 
